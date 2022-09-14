@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: "./src/app.ts",
   module: {
@@ -23,6 +24,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       gameName: "My Phaser Game",
       template: "src/index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/assets", to: "assets" },
+        //{ from: "src/favicon.ico", to: "" },
+      ],
     }),
   ],
 };
