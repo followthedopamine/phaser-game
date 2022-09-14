@@ -4,7 +4,7 @@ const config: Phaser.Types.Core.GameConfig = {
   width: 800,
   height: 600,
   parent: "game",
-  backgroundColor: "#18216D",
+  backgroundColor: "#28216D",
 };
 
 export class StarfallGame extends Phaser.Game {

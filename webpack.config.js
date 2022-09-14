@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./src/app.ts",
   module: {
@@ -18,4 +19,10 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   mode: "development",
+  plugins: [
+    new HtmlWebpackPlugin({
+      gameName: "My Phaser Game",
+      template: "src/index.html",
+    }),
+  ],
 };
