@@ -1,3 +1,4 @@
+import { Player } from "../classes/Player";
 export class GameScene extends Phaser.Scene {
   player: any = null; // Phaser.Physics.Arcade.Sprite;
 
@@ -23,6 +24,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.player = this.physics.add.sprite(100, 450, "dude");
+    this.player = new Player(this);
+    this.player.create();
   }
 }
