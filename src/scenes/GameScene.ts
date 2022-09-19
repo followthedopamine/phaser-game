@@ -1,4 +1,5 @@
 import { Player } from "../classes/Player";
+import { Fruit } from "../classes/Fruit";
 export class GameScene extends Phaser.Scene {
   player: any = null; // Phaser.Physics.Arcade.Sprite;
 
@@ -26,6 +27,8 @@ export class GameScene extends Phaser.Scene {
   create(): void {
     this.player = new Player(this);
     this.player.create();
+    let fruit = new Fruit(this, 200, 500);
+    fruit.create();
   }
 
   update(): void {
