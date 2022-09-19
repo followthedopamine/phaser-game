@@ -7,6 +7,15 @@ export class Player {
   constructor(game: GameScene) {
     this.game = game;
     this.player = this.game.physics.add.sprite(100, 450, "dude");
+
+    // Death on collision with world bounds
+    this.player.setCollideWorldBounds(true);
+    this.player.body.onWorldBounds = true;
+    this.player.body.world.on("worldbounds", this.onWorldBounds);
+  }
+
+  private onWorldBounds(): void {
+    console.log("Death");
   }
 
   create(): void {}
