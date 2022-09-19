@@ -18,7 +18,12 @@ export class Fruit {
 
   create(): void {}
 
-  collect(): void {
+  collect(player: any, fruit: any): void {
     console.log("Collected");
+    const game = player.scene;
+    // TODO: Move away from walls
+    const randomX = Phaser.Math.Between(0, game.sys.canvas.width);
+    const randomY = Phaser.Math.Between(0, game.sys.canvas.height);
+    fruit.setPosition(randomX, randomY);
   }
 }

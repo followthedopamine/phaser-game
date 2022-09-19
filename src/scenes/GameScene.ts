@@ -2,7 +2,6 @@ import { Player } from "../classes/Player";
 import { Fruit } from "../classes/Fruit";
 export class GameScene extends Phaser.Scene {
   player: any = null; // Phaser.Physics.Arcade.Sprite;
-
   constructor() {
     super({
       key: "GameScene",
