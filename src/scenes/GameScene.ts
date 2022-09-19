@@ -27,4 +27,8 @@ export class GameScene extends Phaser.Scene {
     this.player = new Player(this);
     this.player.create();
   }
+
+  update(): void {
+    this.player.update();
+  }
 }
