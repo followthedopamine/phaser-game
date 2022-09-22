@@ -41,6 +41,8 @@ export class Player {
       this.playerPhysics.setVelocityX(0);
       this.playerPhysics.setVelocityY(speed);
     }
+
+    if (this.tail) this.tail.update();
   }
 
   newTail(): void {

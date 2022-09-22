@@ -16,6 +16,14 @@ export class Tail {
   init(): void {}
 
   update(): void {
-    console.log("Test");
+    // Change this to attached
+    if (
+      this.player.x - this.tail.x > this.player.width ||
+      this.player.y - this.tail.y > this.player.height ||
+      this.tail.x - this.player.x > this.player.width ||
+      this.tail.y - this.player.y > this.player.height
+    ) {
+      this.tail.setPosition(this.player.x, this.player.y);
+    }
   }
 }
