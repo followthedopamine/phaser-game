@@ -1,11 +1,14 @@
 import "phaser";
 import { GameScene } from "../scenes/GameScene";
+import { Tail } from "./Tail";
 export class Player {
   game;
   playerPhysics;
+  tail: Tail | null;
   constructor(game: GameScene) {
     this.game = game;
     this.playerPhysics = this.game.physics.add.sprite(100, 450, "dude");
+    this.tail = null;
   }
 
   private onWorldBounds(): void {
@@ -38,5 +41,9 @@ export class Player {
       this.playerPhysics.setVelocityX(0);
       this.playerPhysics.setVelocityY(speed);
     }
+  }
+
+  newTail(): void {
+    this.tail = new Tail(this.game, this.tail || this.playerPhysics);
   }
 }
