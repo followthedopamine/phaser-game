@@ -7,7 +7,7 @@ export class Tail {
   player;
   physics;
   attached: Tail | Player;
-  type: string;
+  prevCoords: any;
   // TODO: change any
   constructor(game: GameScene, attached: Tail | Player) {
     this.game = game;
@@ -19,9 +19,12 @@ export class Tail {
       this.player.y,
       "dude"
     );
-    this.type = "tail";
+    this.prevCoords = [];
     this.init();
-    console.log(this.attached);
+  }
+
+  public updatePrevCoords(): void {
+    this.prevCoords = [this.physics.x, this.physics.y];
   }
 
   init(): void {}
@@ -29,13 +32,22 @@ export class Tail {
   update(): void {
     // Change this to attached
     const attached = this.attached.physics;
+    // const attached = {
+    //   x: this.attached.prevCoords[0],
+    //   y: this.attached.prevCoords[1],
+    // };
     if (
-      attached.x - this.physics.x > attached.width ||
-      attached.y - this.physics.y > attached.height ||
-      this.physics.x - attached.x > attached.width ||
-      this.physics.y - attached.y > attached.height
+      attached.x - this.physics.x > this.physics.width ||
+      attached.y - this.physics.y > this.physics.height ||
+      this.physics.x - attached.x > this.physics.width ||
+      this.physics.y - attached.y > this.physics.height
     ) {
-      this.physics.setPosition(attached.x, attached.y);
+      this.game.player.updatePrevCoords(); // This should not be getting updated by every single Tail object but is necessary right now
+      this.updatePrevCoords();
+      this.physics.setPosition(
+        this.attached.prevCoords[0],
+        this.attached.prevCoords[1]
+      );
     }
   }
 }

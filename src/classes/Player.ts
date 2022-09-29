@@ -5,16 +5,20 @@ export class Player {
   game;
   physics;
   tailChain: Tail[];
-  type: string;
+  prevCoords: any;
   constructor(game: GameScene) {
     this.game = game;
     this.physics = this.game.physics.add.sprite(100, 450, "dude");
     this.tailChain = [];
-    this.type = "player";
+    this.prevCoords = null;
   }
 
   private onWorldBounds(): void {
     console.log("Death");
+  }
+
+  public updatePrevCoords(): void {
+    this.prevCoords = [this.physics.x, this.physics.y];
   }
 
   create(): void {
@@ -43,7 +47,7 @@ export class Player {
       this.physics.setVelocityX(0);
       this.physics.setVelocityY(speed);
     }
-    if (this.tailChain) {
+    if (this.tailChain.length > 0) {
       for (let tail of this.tailChain) {
         tail.update();
       }

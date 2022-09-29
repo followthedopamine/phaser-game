@@ -27,5 +27,6 @@ export class Fruit {
     fruit.setPosition(randomX, randomY);
     //console.log(player);
     game.player.newTail();
+    game.player.updatePrevCoords();
   }
 }
