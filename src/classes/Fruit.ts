@@ -25,7 +25,7 @@ export class Fruit {
     const randomX = Phaser.Math.Between(0, game.sys.canvas.width);
     const randomY = Phaser.Math.Between(0, game.sys.canvas.height);
     fruit.setPosition(randomX, randomY);
-    console.log(player);
+    //console.log(player);
     game.player.newTail();
   }
 }
