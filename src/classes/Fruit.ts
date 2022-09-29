@@ -7,7 +7,7 @@ export class Fruit {
   player;
   constructor(game: GameScene, x: number, y: number) {
     this.game = game;
-    this.player = this.game.player.playerPhysics;
+    this.player = this.game.player.physics;
     this.fruit = this.game.physics.add.sprite(x, y, "bomb");
     this.init();
   }

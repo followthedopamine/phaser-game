@@ -1,17 +1,25 @@
 import "phaser";
 import { GameScene } from "../scenes/GameScene";
+import { Player } from "./Player";
 
 export class Tail {
   game;
   player;
-  tail;
-  attached;
+  physics;
+  attached: Tail | Player;
+  type: string;
   // TODO: change any
-  constructor(game: GameScene, attached: any) {
+  constructor(game: GameScene, attached: Tail | Player) {
     this.game = game;
-    this.player = this.game.player.playerPhysics;
-    this.attached = attached.tail || attached;
-    this.tail = game.physics.add.sprite(this.player.x, this.player.y, "dude");
+    this.player = this.game.player.physics;
+    this.attached = attached;
+
+    this.physics = game.physics.add.sprite(
+      this.player.x,
+      this.player.y,
+      "dude"
+    );
+    this.type = "tail";
     this.init();
     console.log(this.attached);
   }
@@ -20,13 +28,14 @@ export class Tail {
 
   update(): void {
     // Change this to attached
+    const attached = this.attached.physics;
     if (
-      this.attached.x - this.tail.x > this.attached.width ||
-      this.attached.y - this.tail.y > this.attached.height ||
-      this.tail.x - this.attached.x > this.attached.width ||
-      this.tail.y - this.attached.y > this.attached.height
+      attached.x - this.physics.x > attached.width ||
+      attached.y - this.physics.y > attached.height ||
+      this.physics.x - attached.x > attached.width ||
+      this.physics.y - attached.y > attached.height
     ) {
-      this.tail.setPosition(this.attached.x, this.attached.y);
+      this.physics.setPosition(attached.x, attached.y);
     }
   }
 }
